@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     Ray _ray;
     RaycastHit _hit;
 
+    public int groundLayerNumber;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,15 +27,19 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.touchSupported)
         {
-            UnityEngine.Debug.Log("You just need a little touch!");
+            Touch touch = Input.GetTouch(0);
+            _ray = _camera.ScreenPointToRay(touch.position);
 
-
+            if (Physics.Raycast(_ray, out _hit))
+            {
+                _agent.SetDestination(_hit.point);
+            }
         }
         else
         {
             if (Input.GetMouseButtonDown(0))
             {
-                _ray = _camera.ScreenPointToRay(Input.mousePosition); 
+                _ray = _camera.ScreenPointToRay(Input.mousePosition);
 
                 if (Physics.Raycast(_ray, out _hit))
                 {
@@ -44,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
         if(joystick.Horizontal != 0 || joystick.Vertical != 0)
         {
-            _agent.SetDestination(new Vector3(transform.position.x + joystick.Horizontal, transform.position.y, transform.position.z + joystick.Vertical));
+            _agent.SetDestination(new Vector3(transform.position.x + joystick.Horizontal * 2f, transform.position.y + 3f, transform.position.z + joystick.Vertical * 2f));
         }
     }
 }
