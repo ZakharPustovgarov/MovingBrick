@@ -8,12 +8,10 @@ public class PlayerController : MonoBehaviour
     NavMeshAgent _agent;
     Camera _camera;
     [SerializeField]
-    Joystick joystick;
+    Joystick _joystick;
 
     Ray _ray;
     RaycastHit _hit;
-
-    public int groundLayerNumber;
 
     // Start is called before the first frame update
     void Start()
@@ -48,9 +46,9 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if(joystick.Horizontal != 0 || joystick.Vertical != 0)
+        if(_joystick.Horizontal != 0 || _joystick.Vertical != 0)
         {
-            _agent.SetDestination(new Vector3(transform.position.x + joystick.Horizontal * 2f, transform.position.y + 3f, transform.position.z + joystick.Vertical * 2f));
+            _agent.SetDestination(new Vector3(transform.position.x + _joystick.Horizontal * 2f, transform.position.y + 3f, transform.position.z + _joystick.Vertical * 2f));
         }
     }
 }

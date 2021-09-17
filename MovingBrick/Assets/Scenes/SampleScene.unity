@@ -1911,8 +1911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea606fce8137db42889b15e6df8b254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joystick: {fileID: 295369342}
-  groundLayerNumber: 3
+  _joystick: {fileID: 295369342}
 --- !u!1 &1305022892
 GameObject:
   m_ObjectHideFlags: 0
